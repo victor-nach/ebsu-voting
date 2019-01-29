@@ -7,6 +7,12 @@
 3. Carousel
 4. Login / Signup
 5. Introductory section
+6. offices
+7. Candidates
+8. parties
+
+dashboard
+n. Front Footer styles
 
 /*
 ================================================
@@ -17,8 +23,8 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 * {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 body, html {
@@ -44,11 +50,11 @@ footer,
 header,
 nav,
 section {
-  display: block;
+    display: block;
 }
 a {
-    background-color: transparent; 
-    -webkit-text-decoration-skip: objects; 
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
 }
 img {
     border-style: none;
@@ -58,59 +64,59 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: sans-serif;
-  font-size: 100%;
-  line-height: 1.15;
-  margin: 0;
+    font-family: sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
 }
 button,
 html [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button; 
+    -webkit-appearance: button;
 }
 textarea {
     overflow: auto;
 }
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Raleway', sans-serif;
-	margin-top: 0;
-	text-transform: none;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 0;
+    text-transform: none;
 }
 h1{
-font-size:40px;
+    font-size:40px;
 }
 h2{
-font-size:35px;
+    font-size:35px;
 }
 h3{
-font-size:24px;
+    font-size:24px;
 }
 h4 {
-  font-size: 20px;
+    font-size: 20px;
 }
 h5 {
     font-size: 18px;
 }
 h6{
-font-size:16px;
+    font-size:16px;
 }
 p{
-font-size:13px;
+    font-size:13px;
 }
 ul,li{
-	list-style:none;
-	padding:0;
-	margin:0;
+    list-style:none;
+    padding:0;
+    margin:0;
 }
 a, a:hover, a:active, a:focus {
-	outline: none;
-	border: none;	
-	text-decoration:none;
+    outline: none;
+    border: none;
+    text-decoration:none;
 }
 a {
-        color:#333;
-	transition: all 0.3s ease 0s;
+    color:#333;
+    transition: all 0.3s ease 0s;
 }
 a:focus, a:hover {
     color:#003471;
@@ -159,12 +165,12 @@ a:focus, a:hover {
 ================================================
 */
 header.front {
-	position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-	z-index: 99;
+    z-index: 99;
 }
 
 /*---- top header ----*/
@@ -294,7 +300,7 @@ header.front .bottom-header .box div{
 .bg-one {
     height: 100%;
     width: 100%;
-    background: url("images/slider_bg.jpg") fixed;
+    background: url("images/ballot-vote.jpg") fixed;
     background-size: cover;
 }
 
@@ -424,6 +430,7 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: #45a049;
 }
+
 /*
 ================================================
 5. Introductory section
@@ -431,4 +438,66 @@ input[type=submit]:hover {
 */
 .intro {
     height: 100vh;
+}
+
+/*
+================================================
+6. Offices
+================================================
+*/
+.offices {
+    height: 50vh;
+    border-top: 1px solid #003471;
+}
+
+
+/*
+================================================
+7. Candidates
+================================================
+*/
+.candidates {
+    height: 50vh;
+    border-top: 1px solid #003471;
+}
+
+
+/*
+================================================
+8. Political parties
+================================================
+*/
+.parties {
+    height: 50vh;
+    border-top: 1px solid #003471;
+}
+
+
+/*
+================================================
+n. Footer styles
+================================================
+*/
+footer {
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    background: #003471;
+    color: #ddd;
+}
+footer.back {
+    background: #23282d;
+}
+/*
+================================================
+n. Dashboard
+================================================
+*/
+header.back {
+    position: fixed;
+    display: flex;
+    width: 20vw;
+    height: 100vh;
+    background: #23282d;
+    color: #ddd;
 }
