@@ -6,7 +6,7 @@
     <title>POLITICO | HOME </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/main.css" />
-    <script async src="assets/main.js"></script>
+    <script defer src="assets/main.js"></script>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
             <label for="login-lname">Last Name</label>
             <input type="text"  id="login-lname" name="lastname" placeholder="Your last name..">
 
-            <input type="submit" value="Log In">
+            <input type="submit" id="login-button" value="Log In">
 
             <div class="extra-info">
                 <p>Already registered, <a href="">Log in</a> instead. </p>
@@ -67,7 +67,7 @@
                 <input type="email" id="email" name="firstname" placeholder="Your email address..">
 
 
-                <input type="submit" value="next">
+                <input id="signup-button"  type="submit" value="next">
             </div>
 
             <!--form second section-->
@@ -81,11 +81,11 @@
                 <label for="age">Age</label>
                 <input type="number" id="age" name="age" placeholder="Your age..">
 
-                <input type="submit" value="Log In">
+                <input type="submit"  value="Log In">
             </div>
 
             <div class="extra-info">
-                <p>Already registered, <a href="">Log in</a> instead. </p>
+                <p>Already registered, <a href="dashboard/profile.html">Log in</a> instead. </p>
                 <p>forgot password?, <a href="">reset now</a></p>
             </div>
         </form>

@@ -32,11 +32,18 @@ let closeModal = () => {
 logInLink.addEventListener('click', showlogInModal, );
 signUpLink.addEventListener('click', showsignUpModal);
 
-function windowOnClick(event) {
-    if (event.target === modal) {
-        closeModal();
-    }
-}
 
 closeBtn.addEventListener("click", closeModal);
-window.addEventListener("click", windowOnClick);
+
+
+// sign up and lofin redirects to profile page
+let logInButton = document.getElementById("login-button")
+logInButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = 'dashboard/profile.html'
+})
+let signUpButton = document.getElementById("signup-button")
+logInButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = 'dashboard/profile.html'
+})
