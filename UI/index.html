@@ -14,7 +14,6 @@
 <!-- log in modal start -->
 <div class="modal-box login">
 
-    <!--login form-->
     <div class="mdb-content login">
 
         <!--close button-->
@@ -30,7 +29,9 @@
             <label for="login-lname">Last Name</label>
             <input type="text"  id="login-lname" name="lastname" placeholder="Your last name..">
 
-            <input type="submit" id="login-button" value="Log In">
+            <div class="form-buttons">
+            <a href="" id="login-button" class="btn form-btn">submit</a>
+            </div>
 
             <div class="extra-info">
                 <p>Already registered, <a href="">Log in</a> instead. </p>
@@ -39,7 +40,6 @@
         </form>
         <!--form end-->
     </div>
-    <!--login form end-->
 
 </div>
 <!-- log in modal end -->
@@ -58,7 +58,7 @@
             <h2>SIGN UP</h2>
 
             <!--form first section-->
-            <div class="one">
+            <div class="one show">
                 <label for="fname">First Name</label>
                 <input type="text" id="fname" name="firstname" placeholder="Your name..">
 
@@ -69,7 +69,10 @@
                 <input type="email" id="email" name="firstname" placeholder="Your email address..">
 
 
-                <input id="signup-button"  type="submit" value="next">
+                <!--<input   type="submit" value="next">-->
+                <div class="form-buttons">
+                    <a href="" id="next" class="btn form-btn">next</a>
+                </div>
             </div>
 
             <!--form second section-->
@@ -83,7 +86,11 @@
                 <label for="age">Age</label>
                 <input type="number" id="age" name="age" placeholder="Your age..">
 
-                <input type="submit"  value="Log In">
+                <div class="form-buttons">
+                    <a href="" id="prev" class="btn form-btn">prev</a>
+                    <a href="" id="signup-button" class="btn form-btn">submit</a>
+
+                </div>
             </div>
 
             <div class="extra-info">
@@ -165,7 +172,13 @@
             <div class="inner-carousel">
 
                 <!-- image one -->
-                <div class="bg-one"></div>
+                <div class="bg-one">
+                    <div class="carousel-caption">
+                        <h2>Shape Tomorrow<br>by Voting Today</h2>
+                        <p>your vote is your right, your vote is your might.</p>
+                        <a  class="btn sign-up-link">Register Now</a>
+                    </div>
+                </div>
                 <!-- image one end -->
 
             </div>
@@ -176,31 +189,16 @@
 
         <!-- introductory section -->
         <section class="intro">
-            <div class="container"></div>
-        </section>
-        <!-- introductory section -->
-
-        <!--popular offices-->
-        <section class="offices">
             <div class="container">
 
-                <!--title-->
-                <div class="section-title">
-                    <h2>Offices</h2>
-                </div>
-                <!--title-->
-
-                <!--offices section start-->
-                <div class="offices-gallery"></div>
-                <!--offices section end-->
-
-                <div class="more">
-                    <a href="" class="btn">See all offices</a>
-                </div>
+                <blockquote>
+                    The vote is the most powerful instrument ever devised by man for breaking down injustice <br> <br> - dr martin luther king
+                </blockquote>
 
             </div>
         </section>
-        <!--offices end-->
+        <!-- introductory section -->
+
 
         <!--popular candidates-->
         <section class="candidates">
@@ -208,13 +206,54 @@
 
                 <!--title-->
                 <div class="section-title">
-                    <h2>Popular Candidates</h2>
+                    <h2>Candidates</h2>
+                    <p>The political Aspirants from the various parties</p>
                 </div>
                 <!--title-->
 
-                <!--candidates section start-->
-                <div class="candidates-gallery"></div>
-                <!--candidates section end-->
+                <!--candidates grid start-->
+                <div class="candidates-container grid">
+                    <div class="one">
+                        <p>Muhamed Buhari</p>
+                    </div>
+                    <div class="two">
+                        <p>Fela Durotoye</p>
+                    </div>
+                    <div class="three">
+                        <p>Donald Duke</p>
+                    </div>
+                    <div class="four">
+                        <p>Kingsley Moghalu</p>
+                    </div>
+                    <div class="five">
+                        <p>Funmilayo Adesany</p>
+                    </div>
+                    <div class="six">
+                        <p>Thomas Wilson</p>
+                    </div>
+                    <div class="seven">
+                        <p>Omoyele Sowore</p>
+                    </div>
+                    <div class="eight">
+                        <p>Enyinnaya Nnaemeka</p>
+                    </div>
+                    <div class="nine">
+                        <p>Ahmed Buhari</p>
+                    </div>
+                    <div class="ten">
+                        <p>Ayodele Fayose</p>
+                    </div>
+                    <div class="eleven">
+                        <p>Adesanya Fegbenro</p>
+                    </div>
+                    <div class="twelve">
+                        <p>Charles Udeogaranya</p>
+                    </div>
+                    <div class="thirteen">
+                        <p>Charles Udeogaranya</p>
+                    </div>
+                </div>
+                <!--candidates grid end-->
 
                 <div class="more">
                     <a href="" class="btn">See all candidates</a>
@@ -224,19 +263,134 @@
         </section>
         <!--poular candidates end-->
 
+        <!--political offices start-->
+        <section class="offices">
+            <div class="container">
+
+                <!--title-->
+                <div class="section-title">
+                    <h2>Offices</h2>
+                    <p>All the offices / seats being contested for</p>
+                </div>
+                <!--title-->
+
+                <!--offices grid start-->
+                <div class="offices-container grid three-col">
+                    <div class="one">
+                        <p>President</p>
+                        <p class="desc-top">Federal Republic of Nigeria</p>
+                        <p class="desc">see all aspirants</p>
+                    </div>
+                    <div class="two">
+                        <p>Senate President</p>
+                        <p class="desc-top">Senate assembly</p>
+                        <p class="desc">see all aspirants</p>
+                    </div>
+                    <div class="three">
+                        <p>Speaker</p>
+                        <p class="desc-top">House of representatives</p>
+                        <p class="desc">see all aspirants</p>
+                    </div>
+                    <div class="four">
+                        <p>Chairman</p>
+                        <p class="desc-top">local government</p>
+                        <p class="desc">see all aspirants</p>
+                    </div>
+                    <div class="five">
+                        <p>Commisioner</p>
+                        <p class="desc-top">lorem ipsum</p>
+                        <p class="desc">see all aspirants</p>
+                    </div>
+                    <div class="six">
+                        <p>Dolore</p>
+                        <p class="desc-top">lorem ipsum sit</p>
+                        <p class="desc">see all aspirants</p>
+                    </div>
+                    <div class="seven">
+                        <p>Amendi</p>
+                        <p class="desc-top">lorem ipsum sit</p>
+                        <p class="desc">see all aspirants</p>
+                    </div>
+                </div>
+                <!--offices grid end-->
+
+                <div class="more">
+                    <a href="" class="btn">See all offices</a>
+                </div>
+
+            </div>
+        </section>
+        <!--political offices end-->
+
+        <!--vote start-->
+        <section class="vote">
+            <div class="container">
+                <blockquote>
+                    your vote is your voice... and the voice of all the people that fought so that you may have that voice <br> <br> - Margaret
+                </blockquote>
+                <a href="dashboard/vote.html" class="btn">VOTE NOW</a>
+            </div>
+        </section>
+        <!--vote end-->
+
         <!--political parties-->
         <section class="parties">
             <div class="container">
 
                 <!--title-->
                 <div class="section-title">
-                    <h2>Popular Candidates</h2>
+                    <h2>The political parties contesting in the election</h2>
                 </div>
                 <!--title-->
 
-                <!--parties section start-->
-                <div class="parties-gallery"></div>
-                <!--parties section end-->
+                <!--parties grid start-->
+                <div class="parties-container grid">
+                    <div class="one">
+                        <p>PDP</p>
+                        <p class="desc">People's Democratic Party</p>
+                    </div>
+                    <div class="two">
+                        <p>ACN</p>
+                        <p class="desc">All Progressive Congress alliance for africa</p>
+                    </div>
+                    <div class="three">
+                        <p>APC</p>
+                        <p class="desc">All Progressive Congress</p>
+                    </div>
+                    <div class="four">
+                        <p>ADP</p>
+                        <p class="desc">All Progressive Congress</p>
+                    </div>
+                    <div class="five">
+                        <p>AAC</p>
+                        <p class="desc">People's Democratic Party</p>
+                    </div>
+                    <div class="six">
+                        <p>CDC</p>
+                        <p class="desc">People's Democratic Party</p>
+                    </div>
+                    <div class="seven">
+                        <p>CAC</p>
+                        <p class="desc">People's Democratic Party</p>
+                    </div>
+                    <div class="eight">
+                        <p>GDG</p>
+                        <p class="desc">People's Democratic Party</p>
+                    </div>
+                    <div class="nine">
+                        <p>AND</p>
+                        <p class="desc">People's Democratic Party</p>
+                    </div>
+                    <div class="ten">
+                        <p>CPCP</p>
+                        <p class="desc">People's Democratic Party</p>
+                    </div>
+                    <div class="eleven">
+                        <p>FRN</p>
+                        <p class="desc">People's Democratic Party</p>
+                    </div>
+                </div>
+                <!--parties grid end-->
 
                 <div class="more">
                     <a href="" class="btn">See all political parties</a>
