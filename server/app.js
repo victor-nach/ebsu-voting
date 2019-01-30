@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 // Set up the express app
 const app = express();
 
+const PORT = 5000;
+
 // Parse incoming requests data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,8 +19,6 @@ app.get('/', (req, res) => {
   })
 });
 
-const PORT = 5000;
-
 app.listen(PORT, () => {
-  console.log(`server running on port ${PORT}`)
+  console.log(`server running on port ${PORT}`);
 });
