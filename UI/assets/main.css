@@ -3,13 +3,20 @@
 /* Table of Content
 ================================================
 1. General styles
-2. Header Styles
-3. Carousel
-4. Login / Signup
-5. Introductory section
-6. offices
-7. Candidates
-8. parties
+2. Home Page
+    2.1 Header styles
+    2.2 Carousel
+    2.3 Login / Signup
+    2.4 Introductory section
+    2.5 Candidates
+    2.6 offices
+    2.7 parties
+    2.8 Footer styles
+3. Dashboard Area General Styles
+4. Dashboard Profile page
+5. Dashboard Candidates page
+6. Dashboard manage candidates page
+
 
 dashboard
 n. Front Footer styles
@@ -38,7 +45,7 @@ html {
 }
 body {
     font-family: "Poppins", sans-serif;
-    background: #ddd;
+    background: #f1f1f1;
     color: #777;
     font-size: 14px;
     overflow-x: hidden;
@@ -159,10 +166,139 @@ a:focus, a:hover {
         max-width: 1140px;
     }
 }
+
+/*---- grid ----*/
+
+.grid {
+    display: grid;
+    gap: 20px;
+}
+.grid.one-col {
+    grid-template-columns: 1fr; /* 3 columns grid system*/
+    gap: 25px;
+}
+.grid.two-col {
+    grid-template-columns: 1fr 1fr ; /* 3 columns grid system*/
+    gap: 25px;
+}
+.grid.three-col {
+    grid-template-columns: 1fr 1fr 1fr ; /* 3 columns grid system*/
+    gap: 25px;
+}
+@media (min-width: 1366px) {
+    .grid {
+        grid-template-columns: auto auto auto auto; /*4 columns grid system*/
+    }
+    .grid > div {
+        height: 300px;
+    }
+}
+@media (min-width: 1024px) and (max-width: 1366px) {
+    .grid {
+        grid-template-columns: auto auto auto auto; /*4 columns grid system*/
+    }
+    .grid > div {
+        height: 250px;
+    }
+}
+@media (min-width: 960px) and (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr 1fr 1fr; /*4 columns grid system*/
+        /*grid-template-columns: auto auto auto; */
+    }
+    .grid > div {
+        height: 200px;
+    }
+}
+@media (min-width: 860px) and (max-width: 960px) {
+    .grid {
+        grid-template-columns: auto auto auto auto; /*4 columns grid system*/
+    }
+    .grid > div {
+        height: 170px;
+    }
+}
+@media (min-width: 768px) and (max-width: 860px) {
+    .grid {
+        grid-template-columns: auto auto auto; /*3 columns grid system*/
+    }
+    .grid > div {
+        height: 150px;
+    }
+    .grid.three-col {
+        grid-template-columns: auto auto; /* 2 columns grid system*/
+    }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+    .grid {
+        grid-template-columns: auto auto auto ; /*3 columns grid system*/
+    }
+    .grid > div {
+        height: 150px;
+    }
+    .grid.three-col {
+        grid-template-columns: auto auto; /* 2 columns grid system*/
+    }
+}
+@media (min-width: 350px) and (max-width: 550px) {
+    .grid {
+        grid-template-columns: auto auto; /*2 columns grid system*/
+    }
+    .grid > div {
+        height: 150px;
+    }
+    .grid.three-col {
+        grid-template-columns: auto auto; /* 2 columns grid system*/
+    }
+}
+@media (max-width: 350px) {
+    .grid {
+        grid-template-columns: auto auto; /*2 columns grid system*/
+    }
+    .grid > div {
+        height: 150px;
+    }
+    .grid.three-col {
+        grid-template-columns: auto auto; /* 2 columns grid system*/
+    }
+}
+
 /*
 ================================================
-2. Header Styles
+2. Home Page
 ================================================
+*/
+
+/*
+---------------------------
+2.0 general Styles
+---------------------------
+*/
+.section-title {
+    padding: 0 0 40px 0;
+}
+.section-title p{
+    font-size: 16px;
+}
+.more {
+    text-align: center;
+    padding: 40px 0 0 0;
+}
+a.btn {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #003471;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+a.btn:hover {
+    box-shadow: 1px 1px 15px 5px rgba(0,0,0,.5);
+}
+/*
+---------------------------
+2.1 Header Styles
+---------------------------
 */
 header.front {
     position: absolute;
@@ -280,10 +416,11 @@ header.front .bottom-header .box div{
     }
 }
 
+
 /*
-================================================
-3. Carousel
-================================================
+-----------------------
+2.2. Carousel
+-----------------------
 */
 .main-body {
     position: absolute;
@@ -300,15 +437,29 @@ header.front .bottom-header .box div{
 .bg-one {
     height: 100%;
     width: 100%;
-    background: url("images/ballot-vote.jpg") fixed;
+    background: linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),url("images/ballot-vote.jpg") fixed;
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #003471;
+    z-index: 99999;
+}
+.bg-one h2 {
+    font-size: 65px;
+    border-bottom: 1px solid #003471;
+    padding: 0 0 15px 0;
+}
+.bg-one p {
+    padding: 15px 0 25px 0;
+    font-size: 30px;
 }
 
 
 /*
-================================================
-3. Login / Signup
-================================================
+-----------------------
+2.3 Login / Sign up
+-----------------------
 */
 .modal-box {
     position: fixed;
@@ -351,7 +502,7 @@ header.front .bottom-header .box div{
 .modal-box.login.show {
     display: flex;
 }
-.modal-box.login.show {
+.modal-box.signup.show {
     display: flex;
 }
 /*---- forms  ----*/
@@ -423,61 +574,119 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
 }
-.signup .two {
-    display: none;
+form .one {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 1s ease;
 }
+form .one.show {
+    max-height: 500px;
+}
+form .two {
+    max-height: 0;
+    overflow: hidden;
+}
+form .two.show {
+    max-height: 500px;
+}
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.form-btn {
+    flex-grow: 1;
+    margin: 20px 20px 0;
+}
+
 
 input[type=submit]:hover {
     background-color: #45a049;
 }
 
 /*
-================================================
-5. Introductory section
-================================================
+---------------------------
+2.4 Introductory section
+---------------------------
 */
 .intro {
-    height: 100vh;
+
+}
+blockquote {
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    font-size: 40px;
+    font-style: italic;
+    /*quotes: "\201C""\201D""\2018""\2019";*/
+}
+blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+blockquote p {
+    display: inline;
+}
+
+
+
+/*
+---------------------------
+2.5 Candidates
+---------------------------
+*/
+.candidates > div, .offices > div, .intro > div, .parties > div  {
+    padding: 50px 0;
+    border-bottom: 1px solid #003471;
 }
 
 /*
-================================================
-6. Offices
-================================================
+---------------------------
+2.6 Offices
+---------------------------
 */
 .offices {
-    height: 50vh;
-    border-top: 1px solid #003471;
+    background: #fcfcfc;
 }
 
 
 /*
-================================================
-7. Candidates
-================================================
+---------------------------
+2.7 vote
+---------------------------
 */
-.candidates {
-    height: 50vh;
-    border-top: 1px solid #003471;
+.vote {
+    padding: 100px 0;
+    background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("images/slider_bg.jpg")fixed center center;
+    background-size: cover;
 }
-
-
+.vote blockquote {
+    color: #ddd;
+}
+.vote a.btn {
+    border: 1px solid #ddd;
+    padding: 20px;
+    font-size: 20px;
+    color: #ddd;
+}
 /*
-================================================
-8. Political parties
-================================================
+---------------------------
+2.7 Political parties
+---------------------------
 */
 .parties {
-    height: 50vh;
-    border-top: 1px solid #003471;
 }
 
 
 /*
-================================================
-n. Footer styles
-================================================
+---------------------------
+2.8 Footer styles
+---------------------------
 */
+
 footer {
     padding: 10px 0;
     text-align: center;
@@ -488,17 +697,13 @@ footer {
 footer.back {
     background: #23282d;
 }
+
 /*
 ================================================
-n. Dashboard
+3. Dashboard Area General Styles
 ================================================
 */
 
-/*general styles*/
-* {
-    margin: 0;
-    padding: 0;
-}
 .dashboard-container {
     display: grid;
     height: 100vh;
@@ -602,39 +807,45 @@ n. Dashboard
 }
 
 /*
----------------------------------
-candidates
----------------------------------
+================================================
+4. Dashboard Profile page
+================================================
 */
-.candidates-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    /*grid-template-rows: 50px auto;*/
-    gap: 20px;
-    height: 100vh;
+.top-section-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-@media (min-width: 1024px) {
-    .candidates-container > div {
-        height: 250px;
-    }
+.user-container .user-info {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    padding: 10px;
+    transition: all .3s ease;
 }
-@media (min-width: 960px) and (max-width: 1024px) {
-    .candidates-container > div {
-        height: 200px;
-    }
+.user-container .voting-info {
+    padding: 10px;
+    height: auto;
 }
-@media (min-width: 860px) and (max-width: 960px) {
-    .candidates-container > div {
-        height: 170px;
-    }
+.user-container > div p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #003471;
+    padding: 10px 0;
 }
-@media (min-width: 768px) and (max-width: 860px) {
-    .candidates-container > div {
-        height: 150px;
-    }
+.user-container p.sub-info {
+    border-bottom: 1px solid #003471;
 }
-
-/*candidates*/
+.user-container > div:hover {
+    box-shadow: 1px 5px 15px rgba(0,0,0,.5);
+    margin-top: -5px;
+}
+/*
+================================================
+5. Dashboard Candidates page
+================================================
+*/
 
 .top-section-candidates {
     display: flex;
@@ -711,4 +922,172 @@ candidates
 .candidates-container .thirteen {
     background:linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.95) 80%), url("images/candidates/13.jpg") center center;
     background-size: cover;
+}
+
+/*
+================================================
+6. Dashboard Parties page
+================================================
+*/
+
+.parties-container > div {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    cursor: pointer;
+    padding: 10px;
+    transition: all .3s ease;
+}
+.parties-container > div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgba(0,0,0,.9) 20%, rgba(0,0,0,0));
+    transition: all .3s ease
+}
+.parties-container > div:hover::before {
+    background: linear-gradient(rgba(0,0,0,.85) 50%, rgba(0,0,0,0));
+}
+.parties-container > div p {
+    width: 100px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    z-index: 9;
+}
+.parties-container > div p.desc {
+    width: 120px;
+    font-size: 16px;
+    color: #fff;
+    max-height: 0;
+    transition: all 1s ease;
+    overflow-y: hidden;
+}
+.parties-container > div:hover p.desc {
+    max-height: 200px;
+}
+.parties-container > div:hover {
+    box-shadow: 1px 5px 15px rgba(0,0,0,.5);
+    margin-top: -5px;
+}
+.parties-container .one  {
+    background: url("images/parties/01.jpg") center center;
+    background-size: cover;
+}
+.parties-container  .two {
+    background: url("images/parties/02.jpg") center center;
+    background-size: cover;
+}
+.parties-container  .three{
+    background: url("images/parties/02.jpg") center center;
+    background-size: cover;
+}
+.parties-container  .four {
+    background: url("images/parties/01.jpg") center center;
+    background-size: cover;
+}
+.parties-container  .five {
+    background: url("images/parties/02.jpg") center center;
+    background-size: cover;
+}
+.parties-container  .six {
+    background: url("images/parties/01.jpg") center center;
+    background-size: cover;
+}
+.parties-container .seven {
+    background: url("images/parties/02.jpg") center center;
+    background-size: cover;
+}
+.parties-container .eight {
+    background: url("images/parties/01.jpg") center center;
+    background-size: cover;
+}
+.parties-container .nine {
+    background: url("images/parties/02.jpg") center center;
+    background-size: cover;
+}
+.parties-container .ten {
+    background: url("images/parties/01.jpg") center center;
+    background-size: cover;
+}
+.parties-container .eleven {
+    background: url("images/parties/02.jpg") center center;
+    background-size: cover;
+}
+
+/*
+================================================
+6. Dashboard Parties page
+================================================
+*/
+.offices-container > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;  /*position set to relative so we can use the pseudo elements*/
+    box-shadow: 1px 1px 5px rgba(0,0,0,.4);
+    cursor: pointer;
+    padding: 10px;
+    transition: all .3s ease;
+    text-align: center;
+}
+.offices-container > div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #003471;
+    height: 3px;
+    width: 5px;
+    transition: all .3s ease
+}
+.offices-container > div:hover:before {
+    width: 80%;
+}
+.offices-container > div::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #003471;
+    height: 3px;
+    width: 5px;
+    transition: all .7s ease
+}
+.offices-container > div:hover:after {
+    width: 80%;
+}
+.offices-container > div p {
+    font-size: 38px;
+    font-weight: bold;
+    z-index: 9;
+}
+@media (max-width: 768px) {
+    .offices-container > div p {
+        font-size: 22px;
+    }
+}
+.offices-container > div p.desc {
+    font-size: 12px;
+    max-height: 0;
+    border-top: 1px solid #777 ;
+    transition: all 5s linear;
+    overflow-y: hidden;
+}
+.offices-container > div p.desc-top {
+    font-size: 14px;
+    transition: all .5s ease;
+    overflow-y: hidden;
+}
+.offices-container > div:hover p.desc {
+    max-height: 200px;
+}
+.offices-container > div:hover {
+    box-shadow: 1px 5px 3px 3px rgba(0,0,0,.3);
+    margin-top: -5px;
 }
