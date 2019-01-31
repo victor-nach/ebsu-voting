@@ -1,24 +1,31 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
+import router from './routes';
+
 // Set up the express app
 const app = express();
 
-const PORT = 4000;
+const PORT = process.env.PORT || 3395;
 
 // Parse incoming requests data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-// get all todos
+app.use('/api/v1', router);
+
 app.get('/', (req, res) => {
-  res.status(200).send({
-    success: 'true',
-    message: 'we in business bro',
-  })
+  res.status(200).json({ message: 'Welcome to Politico 2018' });
+});
+
+app.all('*', (req, res) => {
+  res
+    .status(404)
+    .json({ message: 'Sorry, such endpoint does not exist' });
 });
 
 app.listen(PORT, () => {
-  console.log(`server running on port ${PORT}`)
+  // eslint-disable-next-line no-console
+  // console.log(`server running on port ${PORT}`);
 });
