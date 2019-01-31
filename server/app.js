@@ -6,7 +6,7 @@ import router from './routes';
 // Set up the express app
 const app = express();
 
-const PORT = process.env.PORT || 3031;
+const PORT = process.env.PORT || 3070;
 
 // Parse incoming requests data
 app.use(bodyParser.json());
@@ -27,5 +27,5 @@ app.all('*', (req, res) => {
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log(`server running on port ${PORT}`);
+  // console.log(`server running on port ${PORT}`);
 });

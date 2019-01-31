@@ -1,7 +1,7 @@
 import express from 'express';
-// eslint-disable-next-line no-unused-vars
+
 import partyRoutes from './party';
-// eslint-disable-next-line no-unused-vars
+
 import officeRoutes from './office';
 
 const router = express.Router();
