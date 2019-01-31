@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 // Set up the express app
 const app = express();
 
-const PORT = 5000;
+const PORT = 4000;
 
 // Parse incoming requests data
 app.use(bodyParser.json());
@@ -20,5 +20,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`server running on port ${PORT}`);
+  console.log(`server running on port ${PORT}`)
 });
