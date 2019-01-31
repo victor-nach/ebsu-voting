@@ -6,7 +6,7 @@ import router from './routes';
 // Set up the express app
 const app = express();
 
-const PORT = process.env.PORT || 3070;
+const PORT = process.env.PORT || 3078;
 
 // Parse incoming requests data
 app.use(bodyParser.json());
