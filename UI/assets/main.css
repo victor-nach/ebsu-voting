@@ -291,6 +291,9 @@ a.btn {
     border: 1px solid #003471;
     transition: all .3s ease;
     cursor: pointer;
+    color: #003471;
+    font-size: 28px;
+    text-align: center;
 }
 a.btn:hover {
     box-shadow: 1px 1px 15px 5px rgba(0,0,0,.5);
@@ -983,31 +986,31 @@ footer.back {
     background-size: cover;
 }
 .parties-container  .three{
-    background: url("images/parties/02.jpg") center center;
+    background: url("images/parties/03.jpg") center center;
     background-size: cover;
 }
 .parties-container  .four {
-    background: url("images/parties/01.jpg") center center;
+    background: url("images/parties/04.jpg") center center;
     background-size: cover;
 }
 .parties-container  .five {
-    background: url("images/parties/02.jpg") center center;
+    background: url("images/parties/05.jpg") center center;
     background-size: cover;
 }
 .parties-container  .six {
-    background: url("images/parties/01.jpg") center center;
+    background: url("images/parties/06.jpg") center center;
     background-size: cover;
 }
 .parties-container .seven {
-    background: url("images/parties/02.jpg") center center;
+    background: url("images/parties/07.jpg") center center;
     background-size: cover;
 }
 .parties-container .eight {
-    background: url("images/parties/01.jpg") center center;
+    background: url("images/parties/08.jpg") center center;
     background-size: cover;
 }
 .parties-container .nine {
-    background: url("images/parties/02.jpg") center center;
+    background: url("images/parties/08.jpg") center center;
     background-size: cover;
 }
 .parties-container .ten {
