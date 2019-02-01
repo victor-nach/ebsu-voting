@@ -6,7 +6,7 @@ import router from './routes';
 // Set up the express app
 const app = express();
 
-const PORT = process.env.PORT || 3395;
+const PORT = process.env.PORT || 3000;
 
 // Parse incoming requests data
 app.use(bodyParser.json());
@@ -29,3 +29,5 @@ app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   // console.log(`server running on port ${PORT}`);
 });
+
+export default app;
