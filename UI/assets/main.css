@@ -799,7 +799,15 @@ footer.back {
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     margin-bottom: 20px;
 }
-
+.btn.sec {
+    border: 1px solid #fff;
+    color: #fff;
+    z-index: 9;
+    margin-top: 10px;
+    visibility: hidden;
+    font-size: 20px;
+    transition: all 2s ease;
+}
 /*footer*/
 .footer {
     display: flex;
@@ -962,16 +970,31 @@ footer.back {
     color: #fff;
     z-index: 9;
 }
+.btn.sec {
+    border: 1px solid #fff;
+    color: #fff;
+    z-index: 9;
+    margin-top: 10px;
+    visibility: hidden;
+    font-size: 20px;
+    transition: visibility .5 ease;
+}
 .parties-container > div p.desc {
     width: 120px;
     font-size: 16px;
     color: #fff;
     max-height: 0;
-    transition: all 1s ease;
+    transition: all .3s ease;
     overflow-y: hidden;
 }
 .parties-container > div:hover p.desc {
     max-height: 200px;
+}
+.parties-container > div:hover .btn.sec {
+    visibility: visible;
+}
+.parties-container > div:hover .btn.sec:hover {
+    background: #333;
 }
 .parties-container > div:hover {
     box-shadow: 1px 5px 15px rgba(0,0,0,.5);
