@@ -8,6 +8,10 @@
     "dev": "nodemon server/app.js --exec babel-node --",
     "test": "mocha --require @babel/register ./server/test/*.js --exit"
   },
+  "engine": {
+    "node": "v8.10.0",
+    "npm": "3.5.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/victor-nach/politico.git"
@@ -19,8 +23,10 @@
   },
   "homepage": "https://github.com/victor-nach/politico#readme",
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
@@ -31,10 +37,6 @@
     "validate.js": "^0.12.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/node": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
     "@babel/register": "^7.0.0",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",

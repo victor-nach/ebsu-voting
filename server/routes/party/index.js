@@ -16,13 +16,14 @@ router.post('/', checkAddParty, validationResult, partyController.createParty);
 router.get('/', partyController.getAllparties);
 
 //  3. GET - get a political parties
+// router.get('/:id', checkAddParty, partyController.getSingleParty);
 router.get('/:id', checkPartyId, validationResult, partyController.getSingleParty);
 
 //  4. PATCH- update a political party
 router.patch('/:id/:name', checkPartyId, checkEditParty, validationResult, partyController.updateParty);
 
 //  5. DELETE- delete a political party
-router.delete('/:id', checkPartyId, validationResult, partyController.deleteParty);
+router.delete('/:id', checkPartyId, partyController.deleteParty);
 
 
 export default router;
