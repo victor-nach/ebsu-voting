@@ -1,6 +1,6 @@
 import officeDb from '../models/offices';
 
-class Office {
+class officeController {
   /**
     * 1. CREATE - create a new office object
     * @method createOffice
@@ -137,4 +137,4 @@ class Office {
 // end of class
 }
 
-export default Office;
+export default officeController;

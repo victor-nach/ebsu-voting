@@ -3,8 +3,8 @@
 import express from 'express';
 import officeController from '../../controllers/officeController';
 
-import officeValidation from '../../middleware/validation/officeValidation';
-import validationResult from '../../middleware/validation/validationResult';
+import officeValidation from '../../middlewares/validation/officeValidation';
+import validationResult from '../../middlewares/validation/validationResult';
 
 const router = express.Router();
 

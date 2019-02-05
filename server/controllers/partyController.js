@@ -1,6 +1,6 @@
 import partyDb from '../models/parties';
 
-class Party {
+class partyController {
   /**
     * 1. CREATE - create a new Party object
     * @method createParty
@@ -141,4 +141,4 @@ class Party {
 // end of class
 }
 
-export default Party;
+export default partyController;
