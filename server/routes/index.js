@@ -1,8 +1,7 @@
 import express from 'express';
-
 import partyRoutes from './party';
-
 import officeRoutes from './office';
+import userRoutes from './users';
 
 const router = express.Router();
 
@@ -11,6 +10,9 @@ router.use('/parties', partyRoutes);
 
 //  for all office routes
 router.use('/office', officeRoutes);
+
+//  for all user routes
+router.use('/user', userRoutes);
 
 //  handle all requests on api/v1 endpoint as specified in app.js
 router.get('/', (req, res) => {
