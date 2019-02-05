@@ -19,7 +19,7 @@ const createTables = () => {
   const queryText =
   `CREATE TABLE IF NOT EXISTS
   users(
-    id UUID PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     firstName VARCHAR(128) NOT NULL,
     lastName VARCHAR(128) NOT NULL
   )`;
