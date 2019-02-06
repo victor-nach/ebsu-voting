@@ -72,7 +72,7 @@ class partyController {
 
 
   /**
-    * 3. RETRIEVE - get all parties as an array
+    * 3. RETRIEVE - get all political parties
     * @method getAllparties
     * @parameters {object} req
     * @parameters {object} res
