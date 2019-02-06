@@ -1,3 +1,4 @@
+import db from '../models/index';
 import officeDb from '../models/offices';
 
 class officeController {
@@ -9,28 +10,34 @@ class officeController {
     * @return {object} The new office that was just created
   */
 
-  static createOffice(req, res) {
-    // user is expected to send the name and type in the req.body, so we destructure it
-    const { name, type } = req.body;
+  static async createOffice(req, res) {
+  // user is expected to send the name and hqAddress, logoUrl in the req.body
+    const {
+      name, type,
+    } = req.body;
 
-    // create the new office with the data received
-    const newOffice = {
-      id: officeDb.length + 1,
+    // sql to insert a row to our already created database
+    const text = `INSERT INTO
+      office (name, type)
+      values($1, $2)
+      returning *`;
+
+    const values = [
       name,
       type,
-    };
+    ];
 
-    // add the newly created office inside the mock database array
-    officeDb.push(newOffice);
-
-    // return appropriate message to the user
-    return res.status(201).json({
-      status: 201,
-      data: newOffice,
-      message: 'The office has been succesfuly created and added to storage',
-    });
+    try {
+      const { rows } = await db.query(text, values);
+      return res.status(201).json({
+        status: 201,
+        data: rows[0],
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
   }
-  //   create office end
+  // create Party end
 
 
   /**
