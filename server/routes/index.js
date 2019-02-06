@@ -9,7 +9,7 @@ const router = express.Router();
 router.use('/parties', partyRoutes);
 
 //  for all office routes
-router.use('/office', officeRoutes);
+router.use('/offices', officeRoutes);
 
 //  for all user routes
 router.use('/user', userRoutes);
