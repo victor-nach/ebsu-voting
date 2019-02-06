@@ -18,14 +18,12 @@ const partyValidation = {
     check('name').isLength({ min: 1 }).withMessage('kindly put in the party name'),
     check('hqAddress').isLength({ min: 1 }).withMessage('kindly put in the hq Address name'),
     check('logoUrl').isURL({ min: 1 }).withMessage('kindly put in a valid logo Url name'),
-    check('website').isLength({ min: 1 }).withMessage('kindly put in the party\'s web sddress'),
-    check('slogan').isLength({ min: 1 }).withMessage('kindly put in the hq Address name'),
   ],
 
   // check all inputs during updating of party name
   checkEditParty: [
     check('name').isLength({ min: 1 }).withMessage('kindly put in the party name'),
-    check('name').equals('state').withMessage('An office with this name already exists'),
+    // check('name').equals('state').withMessage('An office with this name already exists'),
   ],
 
 };
