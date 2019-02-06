@@ -41,8 +41,7 @@ const createTables = () => {
   `;
 
   pool.query(queryText)
-    .then((res) => {
-      console.log(res);
+    .then(() => {
       pool.end();
     })
     .catch(() => {
