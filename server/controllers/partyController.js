@@ -146,7 +146,7 @@ class partyController {
     // The id of the Party to be deleted is sent as a rquest parameter
     const { id } = req.params;
 
-    // find the requested Party from mock array database
+    // SQL to delete a row based on the specified id
     const text = 'DELETE * FROM party WHERE id = $1';
 
     const values = [
