@@ -40,7 +40,7 @@ class partyController {
   // create Party end
 
   /**
-    * 2. RETRIEVE - get a single Party object
+    * 2. RETRIEVE - get a single Party
     * @method getSingleParty
     * @parameters {object} req
     * @parameters {object} res
@@ -51,7 +51,7 @@ class partyController {
     // the id to be used is sent as a url parameter
     const { id } = req.params;
 
-    // find the requested Party from mock array database
+    // find the requested Party from mock remote database
     const text = 'SELECT * FROM party WHERE id = $1';
 
     const values = [
