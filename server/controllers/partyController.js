@@ -99,7 +99,7 @@ class partyController {
 
 
   /**
-    * 4. UPDATE - update a single Party
+    * 4. UPDATE - update a single political Party
     * @method updateParty
     * @parameters {object} req
     * @parameters {object} res
