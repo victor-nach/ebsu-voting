@@ -18,10 +18,10 @@ const createTables = () => {
    CREATE TABLE IF NOT EXISTS
     users(
       id SERIAL PRIMARY KEY,
-      firstName VARCHAR(40) NOT NULL,
-      lastName VARCHAR(40) NOT NULL,
-      email VARCHAR(30) NOT NULL,
-      phoneNumber VARCHAR(14) NOT NULL,
+      firstName VARCHAR(1280) NOT NULL,
+      lastName VARCHAR(128) NOT NULL,
+      email VARCHAR(128) UNIQUE NOT NULL,
+      phoneNumber VARCHAR(128) NOT NULL,
       passportUrl VARCHAR(128) NOT NULL,
       isAdmin BOOLEAN NOT NULL DEFAULT 'false',
       hashedPassword VARCHAR(128) 
