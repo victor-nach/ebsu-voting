@@ -18,12 +18,13 @@ const createTables = () => {
    CREATE TABLE IF NOT EXISTS
     users(
       id SERIAL PRIMARY KEY,
-      firstName VARCHAR(128) NOT NULL,
-      lastName VARCHAR(128) NOT NULL,
-      email VARCHAR(128) NOT NULL,
+      firstName VARCHAR(40) NOT NULL,
+      lastName VARCHAR(40) NOT NULL,
+      email VARCHAR(30) NOT NULL,
       phoneNumber VARCHAR(14) NOT NULL,
       passportUrl VARCHAR(128) NOT NULL,
-      isAdmin BOOLEAN NOT NULL DEFAULT 'false'
+      isAdmin BOOLEAN NOT NULL DEFAULT 'false',
+      hashedPassword VARCHAR(128) 
     );
   CREATE TABLE IF NOT EXISTS
     party(
@@ -41,7 +42,8 @@ const createTables = () => {
   `;
 
   pool.query(queryText)
-    .then(() => {
+    .then((res) => {
+      console.log(res);
       pool.end();
     })
     .catch(() => {

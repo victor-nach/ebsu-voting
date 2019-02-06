@@ -12,7 +12,7 @@ router.use('/parties', partyRoutes);
 router.use('/offices', officeRoutes);
 
 //  for all user routes
-router.use('/user', userRoutes);
+router.use('/auth', userRoutes);
 
 //  handle all requests on api/v1 endpoint as specified in app.js
 router.get('/', (req, res) => {

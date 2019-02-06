@@ -7,8 +7,8 @@
     "start": "babel-node server/app.js",
     "dev": "nodemon server/app.js --exec babel-node --",
     "test": "nyc --reporter=html --reporter=text mocha --require @babel/register ./server/test/*.js --exit",
-    "createTable": "babel-node server/models/createTables.js createTables",
-    "dropTable": "babel-node server/models/createTables.js dropTables"
+    "createTables": "babel-node server/models/createTables.js createTables",
+    "dropTables": "babel-node server/models/createTables.js dropTables"
   },
   "engine": {
     "node": "v8.10.0",
@@ -30,6 +30,7 @@
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "babel-polyfill": "^6.26.0",
+    "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
