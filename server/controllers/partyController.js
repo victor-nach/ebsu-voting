@@ -110,7 +110,7 @@ class partyController {
     // the id and the new name to be used is sent as a url parameter
     const { id, name } = req.params;
 
-    // sql to insert a row to our already created database
+    // sql to update just the name field in our database
     const text = `UPDATE party
       SET name = $2
       WHERE id = $1 
