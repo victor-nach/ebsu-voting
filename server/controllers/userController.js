@@ -1,14 +1,13 @@
-import jwt from 'jsonwebtoken';
 import db from '../models/index';
 import helper from '../utils/helper';
 
 class UserController {
   /**
-      * 1. CREATE - create a new office object
-      * @method createOffice
+      * 1.@method createUser
+      * @description registers a new user
       * @parameters {object} req
       * @parameters {object} res
-      * @return {object} The new office that was just created
+      * @return {object} JSON API response
     */
 
   static async createUser(req, res) {
@@ -48,8 +47,58 @@ class UserController {
       return res.status(400).send(error);
     }
   }
-
   //   create user end
+
+  /**
+      * 1.@method loginUser
+      * @description Logs in a user if all details are correct
+      * @parameters {object} req - Thr request object
+      * @parameters {object} res - The response object
+      * @return {object} JSON API response
+    */
+  static async loginUser(req, res) {
+    // user is expected to send the name and type in the req.body, so we destructure it
+    const { email, password } = req.body;
+
+    // find the requested user from the remote database
+    const queryText = 'SELECT * FROM users WHERE email = $1';
+
+    const values = [email];
+
+    try {
+      const { rows } = await db.query(queryText, values);
+
+      // if the response is empty
+      if (!rows[0]) {
+        return res.status(402).json({
+          message: 'invalid email address',
+        });
+      }
+
+      const {
+        id, firstName, lastName, phoneNumber, passportUrl,
+      } = rows[0];
+
+      const token = helper.generateToken(rows[0].id);
+      return res.status(200).json({
+        status: 200,
+        data: [{
+          token,
+          user: {
+            id,
+            firstName,
+            lastName,
+            email,
+            phoneNumber,
+            passportUrl,
+          },
+          user2: rows[0],
+        }],
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  }
 
   // end of class
 }
