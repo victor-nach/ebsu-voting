@@ -1,39 +1,41 @@
-import partyDb from '../models/parties';
+import db from '../models/index';
 
 class partyController {
   /**
-    * 1. CREATE - create a new Party object
+    * 1. CREATE - create a new Party to the database
     * @method createParty
     * @parameters {object} req
     * @parameters {object} res
     * @return {object} The new Party that was just created
   */
 
-  static createParty(req, res) {
-    // user is expected to send the name and hqAddress, logoUrl website and slogan in the req.body
+  static async createParty(req, res) {
+    // user is expected to send the name and hqAddress, logoUrl in the req.body
     const {
-      name, hqAddress, logoUrl, website, slogan,
+      name, hqAddress, logoUrl,
     } = req.body;
 
-    // create the new Party with the data received
-    const newParty = {
-      id: partyDb.length + 1,
+    // sql to insert a row to our already created database
+    const text = `INSERT INTO
+        party (name, hqAddress, logoUrl)
+        values($1, $2, $3)
+        returning *`;
+
+    const values = [
       name,
       hqAddress,
       logoUrl,
-      website,
-      slogan,
-    };
+    ];
 
-    // add the newly created Party inside the mock database array
-    partyDb.push(newParty);
-
-    // return appropriate message to the user
-    return res.status(201).json({
-      status: 201,
-      data: newParty,
-      message: 'The Party has been succesfuly created and added to storage',
-    });
+    try {
+      const { rows } = await db.query(text, values);
+      return res.status(201).json({
+        status: 201,
+        data: rows[0],
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
   }
   // create Party end
 
@@ -45,20 +47,26 @@ class partyController {
     * @return {object} The new Party that was requested for
   */
 
-  static getSingleParty(req, res) {
+  static async getSingleParty(req, res) {
     // the id to be used is sent as a url parameter
     const { id } = req.params;
 
     // find the requested Party from mock array database
-    // the find method loops through the elements and returns the one for which obj.id = req.id
-    const requestedParty = partyDb.find(currentElement => currentElement.id === id);
+    const text = 'SELECT * FROM party WHERE id = $1';
 
-    // return appropriate message and single requested Party to the user
-    return res.status(200).json({
-      status: 200,
-      data: requestedParty,
-      message: 'The Party you requested for has been succesfully returned',
-    });
+    const values = [
+      id,
+    ];
+
+    try {
+      const { rows } = await db.query(text, values);
+      return res.status(200).json({
+        status: 200,
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
   }
   // get single Party end
 
@@ -71,15 +79,21 @@ class partyController {
     * @return [array] An array Containing all the parties available
     */
 
-  static getAllparties(req, res) {
+  static async getAllparties(req, res) {
     // In this case no specific data is provided
 
-    // return appropriate message and array of all parties to the user
-    return res.status(200).json({
-      status: 200,
-      data: partyDb,
-      message: 'You have successfully Retrieved all the available Party records',
-    });
+    // return a  list of all the parties from the database
+    const text = 'SELECT * FROM party';
+
+    try {
+      const { rows } = await db.query(text);
+      return res.status(200).json({
+        status: 200,
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
   }
   // get all parties end
 
@@ -92,22 +106,30 @@ class partyController {
     * @return {object} The new Party that was updated
   */
 
-  static updateParty(req, res) {
+  static async updateParty(req, res) {
     // the id and the new name to be used is sent as a url parameter
     const { id, name } = req.params;
 
-    // find the specific Party
-    const PartyUpdate = partyDb.find(currentElement => currentElement.id === id);
+    // sql to insert a row to our already created database
+    const text = `UPDATE party
+      SET name = $2
+      WHERE id = $1 
+      returning *`;
 
-    // re-assign PartyUpdate
-    PartyUpdate.name = name;
+    const values = [
+      id,
+      name,
+    ];
 
-    // return the appropriate message
-    res.status(200).json({
-      status: 200,
-      data: PartyUpdate,
-      message: 'The Party has been successfully updated.',
-    });
+    try {
+      const { rows } = await db.query(text, values);
+      return res.status(201).json({
+        status: 201,
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
   }
   // update a single Party end
 
@@ -120,21 +142,26 @@ class partyController {
     * @return [array] The updated list of parties as an array
   */
 
-  static deleteParty(req, res) {
+  static async deleteParty(req, res) {
     // The id of the Party to be deleted is sent as a rquest parameter
     const { id } = req.params;
 
-    // get the index position of the specific Party to be deleted
-    const requestedPartyId = partyDb.findIndex(currentElement => currentElement.id === id);
+    // find the requested Party from mock array database
+    const text = 'DELETE * FROM party WHERE id = $1';
 
-    // Delete the specific Party with that particular index
-    partyDb.splice(requestedPartyId, 1);
+    const values = [
+      id,
+    ];
 
-    res.status(200).json({
-      status: 200,
-      data: partyDb,
-      message: 'The Party you requested has been sucesfully reomoved from storage',
-    });
+    try {
+      const { rows } = await db.query(text, values);
+      return res.status(200).json({
+        status: 200,
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
   }
   // delete a single Party end
 
