@@ -48,20 +48,26 @@ class officeController {
     * @return {object} The new office that was requested for
   */
 
-  static getSingleOffice(req, res) {
+  static async getSingleOffice(req, res) {
     // the id to be used is sent as a url parameter
     const { id } = req.params;
 
-    // find the requested office from mock array database
-    // the find method loops through the elements and returns the one for which obj.id = req.id
-    const requestedOffice = officeDb.find(currentElement => currentElement.id === id);
+    // find the requested office from database
+    const text = 'SELECT * FROM user WHERE id = $1';
 
-    // return appropriate message and single requested office to the user
-    return res.status(200).json({
-      status: 200,
-      data: requestedOffice,
-      message: 'The office you requested for has been succesfully returned',
-    });
+    const values = [
+      id,
+    ];
+
+    try {
+      const { rows } = await db.query(text, values);
+      return res.status(200).json({
+        status: 200,
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
   }
   // get single office end
 
