@@ -16,7 +16,6 @@ router.post('/', checkAddParty, validationResult, partyController.createParty);
 router.get('/', partyController.getAllparties);
 
 //  3. GET - get a political parties
-// router.get('/:id', checkAddParty, partyController.getSingleParty);
 router.get('/:id', checkPartyId, validationResult, partyController.getSingleParty);
 
 //  4. PATCH- update a political party
