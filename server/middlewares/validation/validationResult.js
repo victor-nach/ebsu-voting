@@ -1,7 +1,7 @@
 import { validationResult } from 'express-validator/check';
 
 // A function that allows us to validate all the results returned by validate.js
-function validateResult(req, res, next) {
+const validateResult = (req, res, next) => {
   const errors = validationResult(req);
 
   // if we have any errors
@@ -17,6 +17,6 @@ function validateResult(req, res, next) {
 
   // pass control to the next middleware
   return next();
-}
+};
 
 export default validateResult;

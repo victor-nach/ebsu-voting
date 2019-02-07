@@ -13,11 +13,16 @@ const { checkOfficeId, checkAddOffice } = officeValidation;
 //  1. POST - create a political office
 router.post('/', checkAddOffice, officeController.createOffice);
 
-//  2. GET - get all political ofices
+//  2. POST - create a political office
+router.post('/:id/register', officeController.registerCandidateForOffice);
+
+//  3. GET - get all political ofices
 router.get('/', officeController.getAllOffices);
 
-//  3. GET - get a political ofices
+//  4. GET - get a political ofice
 router.get('/:id', checkOfficeId, validationResult, officeController.getSingleOffice);
 
+//  3. POST - get all reult for political office
+router.post('/:id/result', officeController.getResult);
 
 export default router;

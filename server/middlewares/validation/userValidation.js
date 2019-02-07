@@ -1,5 +1,4 @@
 import { check } from 'express-validator/check';
-import userDb from '../../models/parties';
 
 
 //  object to contain all validations array

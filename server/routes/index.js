@@ -2,6 +2,7 @@ import express from 'express';
 import partyRoutes from './party';
 import officeRoutes from './office';
 import userRoutes from './users';
+import votingRoutes from './voting';
 
 const router = express.Router();
 
@@ -10,6 +11,10 @@ router.use('/parties', partyRoutes);
 
 //  for all office routes
 router.use('/offices', officeRoutes);
+
+//  for all voting routes
+router.use('/vote', votingRoutes);
+
 
 //  for all user routes
 router.use('/auth', userRoutes);

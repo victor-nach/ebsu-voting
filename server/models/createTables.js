@@ -1,5 +1,7 @@
-const { Pool } = require('pg');
-const dotenv = require('dotenv');
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
+
+require('make-runnable');
 
 dotenv.config();
 
@@ -15,47 +17,53 @@ pool.on('connect', () => {
  */
 const createTables = () => {
   const queryText = `
-   CREATE TABLE IF NOT EXISTS
-    users(
-      id SERIAL PRIMARY KEY,
-      firstName VARCHAR(1280) NOT NULL,
-      lastName VARCHAR(128) NOT NULL,
-      email VARCHAR(128) UNIQUE NOT NULL,
-      phoneNumber VARCHAR(128) NOT NULL,
-      passportUrl VARCHAR(128) NOT NULL,
-      isAdmin BOOLEAN NOT NULL DEFAULT 'false',
-      hashedPassword VARCHAR(128) 
-    );
-  CREATE TABLE IF NOT EXISTS
-    party(
-      id SERIAL PRIMARY KEY,
-      name VARCHAR(128) NOT NULL,
-      hqAddress VARCHAR(128) NOT NULL,
-      logoUrl VARCHAR(128) NOT NULL
-    );  
-  CREATE TABLE IF NOT EXISTS
-    office(
-      id SERIAL PRIMARY KEY,
-      type VARCHAR(128) NOT NULL,
-      name VARCHAR(128) NOT NULL
-    );      
-  `;
+  DROP TABLE IF EXISTS users CASCADE;
+  CREATE TABLE users(
+    id SERIAL NOT NULL PRIMARY KEY,
+    firstName VARCHAR (128) NOT NULL,
+    lastName VARCHAR (128) NOT NULL,
+    email VARCHAR (355) UNIQUE NOT NULL,
+    phoneNumber VARCHAR(128) NOT NULL,
+    passportUrl TEXT NOT NULL,
+    isAdmin BOOLEAN NOT NULL DEFAULT (false),
+    hashedPassword VARCHAR (128) NOT NULL
+  );
 
-  pool.query(queryText)
-    .then((res) => {
-      console.log(res);
-      pool.end();
-    })
-    .catch(() => {
-      pool.end();
-    });
-};
+  DROP TABLE IF EXISTS parties CASCADE;  
+  CREATE TABLE parties(
+    id SERIAL NOT NULL PRIMARY KEY,
+    name VARCHAR (128) UNIQUE NOT NULL,
+    hqAddress VARCHAR (128) NOT NULL,
+    logoUrl TEXT NOT NULL,
+    createdOn TIMESTAMP NOT NULL DEFAULT (NOW())
+  );  
 
-/**
- * Drop Tables
- */
-const dropTables = () => {
-  const queryText = 'DROP TABLE IF EXISTS users';
+  DROP TABLE IF EXISTS offices CASCADE;  
+  CREATE TABLE offices(
+    id SERIAL NOT NULL PRIMARY KEY,
+    name VARCHAR (128) NOT NULL,
+    type VARCHAR (128) NOT NULL
+  );      
+
+  DROP TABLE IF EXISTS candidates CASCADE; 
+  CREATE TABLE candidates(
+    id SERIAL NOT NULL PRIMARY KEY,
+    officeId INT NOT NULL REFERENCES offices(id) ON DELETE CASCADE,
+    partyId INT NOT NULL REFERENCES parties(id) ON DELETE CASCADE,
+    userId INT NOT NULL REFERENCES users(id) ON DELETE CASCADE
+  ); 
+
+  DROP TABLE IF EXISTS votes CASCADE; 
+  CREATE TABLE votes(
+    id SERIAL NOT NULL,
+    createdOn TIMESTAMP NOT NULL DEFAULT (NOW()),
+    createdBy INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    officeId INT NOT NULL REFERENCES offices(id) ON DELETE CASCADE,
+    candidateId INT NOT NULL REFERENCES candidates(id) ON DELETE CASCADE,
+    PRIMARY KEY (officeId, createdBy)
+  );
+`;
+
   pool.query(queryText)
     .then(() => {
       pool.end();
@@ -65,13 +73,11 @@ const dropTables = () => {
     });
 };
 
+
 pool.on('remove', () => {
   process.exit(0);
 });
 
-module.exports = {
-  createTables,
-  dropTables,
-};
+createTables();
 
-require('make-runnable');
+export default createTables;

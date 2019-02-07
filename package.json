@@ -7,7 +7,7 @@
     "start": "babel-node server/app.js",
     "dev": "nodemon server/app.js --exec babel-node --",
     "test": "nyc --reporter=html --reporter=text mocha --require @babel/register ./server/test/*.js --exit",
-    "createTables": "babel-node server/models/createTables.js createTables",
+    "createTables": "babel-node server/models/createTables.js",
     "dropTables": "babel-node server/models/createTables.js dropTables"
   },
   "engine": {

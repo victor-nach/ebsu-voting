@@ -1,4 +1,4 @@
-import db from '../models/index';
+import db from '../models';
 import helper from '../utils/helper';
 
 class UserController {
@@ -10,7 +10,7 @@ class UserController {
       * @return {object} JSON API response
     */
 
-  static async createUser(req, res) {
+  static async registerUser(req, res) {
     // user is expected to send the name and type in the req.body, so we destructure it
     const {
       firstName, lastName, email, phoneNumber, passportUrl, password,
@@ -58,47 +58,29 @@ class UserController {
     */
   static async loginUser(req, res) {
     // user is expected to send the name and type in the req.body, so we destructure it
-    const { email, password } = req.body;
+    const { email } = req.body;
 
     // find the requested user from the remote database
-    const queryText = 'SELECT * FROM users WHERE email = $1';
+    const queryText = 'SELECT firstName, lastName, email, phoneNumber, passportUrl FROM users WHERE email = $1';
 
     const values = [email];
 
     try {
       const { rows } = await db.query(queryText, values);
 
-      // if the response is empty
-      if (!rows[0]) {
-        return res.status(402).json({
-          message: 'invalid email address',
-        });
-      }
-
-      const {
-        id, firstName, lastName, phoneNumber, passportUrl,
-      } = rows[0];
-
       const token = helper.generateToken(rows[0].id);
       return res.status(200).json({
         status: 200,
         data: [{
           token,
-          user: {
-            id,
-            firstName,
-            lastName,
-            email,
-            phoneNumber,
-            passportUrl,
-          },
-          user2: rows[0],
+          user: rows[0],
         }],
       });
     } catch (error) {
       return res.status(400).send(error);
     }
   }
+
 
   // end of class
 }
