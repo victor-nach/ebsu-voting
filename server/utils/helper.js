@@ -22,15 +22,6 @@ class helper {
   }
 
   /**
-   * Is valid email helper Method
-   * @param {string} emaila address
-   * @returns {Boolean} return True or False
-   */
-  static isValidEmail(email) {
-    return /\S+@\S+\.\S+/.test(email);
-  }
-
-  /**
    * Gnerate Token
    * @param {string} id
    * @returns {string} token

@@ -1,8 +1,4 @@
 import { check } from 'express-validator/check';
-import partyDb from '../../models/parties';
-
-// get the length of currently available items in the parties array
-const totoalParties = partyDb.length;
 
 //  object to contain all validations array
 const partyValidation = {
@@ -10,7 +6,7 @@ const partyValidation = {
   // specifically check for party ID
   checkPartyId: [
     check('id').isInt().withMessage('kindly put in an integer as the id'),
-    check('id').isFloat({ min: 1, max: totoalParties }),
+    check('id').isFloat({ min: 1, max: 5 }),
   ],
 
   // check all inputs during creation of party

@@ -1,6 +1,6 @@
-import db from '../models/index';
+import db from '../models';
 
-class partyController {
+class PartyController {
   /**
     * 1. CREATE - create a new Party to the database
     * @method createParty
@@ -17,7 +17,7 @@ class partyController {
 
     // sql to insert a row to our already created database
     const text = `INSERT INTO
-        party (name, hqAddress, logoUrl)
+        parties (name, hqAddress, logoUrl)
         values($1, $2, $3)
         returning *`;
 
@@ -52,7 +52,7 @@ class partyController {
     const { id } = req.params;
 
     // find the requested Party from mock remote database
-    const text = 'SELECT * FROM party WHERE id = $1';
+    const text = 'SELECT * FROM parties WHERE id = $1';
 
     const values = [
       id,
@@ -83,7 +83,7 @@ class partyController {
     // In this case no specific data is provided
 
     // return a  list of all the parties from the database
-    const text = 'SELECT * FROM party';
+    const text = 'SELECT * FROM parties';
 
     try {
       const { rows } = await db.query(text);
@@ -111,7 +111,7 @@ class partyController {
     const { id, name } = req.params;
 
     // sql to update just the name field in our database
-    const text = `UPDATE party
+    const text = `UPDATE parties
       SET name = $2
       WHERE id = $1 
       returning *`;
@@ -147,7 +147,7 @@ class partyController {
     const { id } = req.params;
 
     // SQL to delete a row based on the specified id
-    const text = 'DELETE * FROM party WHERE id = $1';
+    const text = 'DELETE * FROM parties WHERE id = $1';
 
     const values = [
       id,
@@ -168,4 +168,4 @@ class partyController {
 // end of class
 }
 
-export default partyController;
+export default PartyController;
