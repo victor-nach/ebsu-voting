@@ -36,7 +36,7 @@ class UserController {
 
     try {
       const { rows } = await db.query(queryText, values);
-      const token = helper.generateToken({ });
+      const token = helper.genrateToken(rows[0].id, rows[0].isadmin);
       return res.status(201).json({
         status: 201,
         data: [{
@@ -51,7 +51,7 @@ class UserController {
           error: 'user already exists',
         });
       }
-      return res.status(500).send('server error');
+      return res.status(500).send('sorry your request cannot be completed at this time');
     }
   }
   //   create user end
@@ -65,16 +65,24 @@ class UserController {
     */
   static async loginUser(req, res) {
     // user is expected to send the name and type in the req.body, so we destructure it
-    const { email } = req.body;
+    const { email, password } = req.body;
 
-    // find the requested user from the remote database
-    const queryText = 'SELECT firstName, lastName, email, phoneNumber, passportUrl FROM users WHERE email = $1';
+    // find the requested user from the database
+    const queryText = 'SELECT * FROM users WHERE email = $1';
 
     const values = [email];
 
     try {
       const { rows } = await db.query(queryText, values);
-      const token = helper.generateToken(rows[0].id);
+      if (!rows[0]) {
+        return res.status(400).json({ message: 'The email address is incorrect' });
+      }
+      if (!helper.comparePassword(rows[0].hashedpassword, password)) {
+        return res.status(400).json({ message: 'The password is incorrect, doesn\'t match' });
+      }
+      const token = helper.genrateToken(rows[0].id, rows[0].isadmin);
+      delete rows[0].isadmin;
+      delete rows[0].hashedpassword;
       return res.status(200).json({
         status: 200,
         data: {
@@ -83,7 +91,7 @@ class UserController {
         },
       });
     } catch (error) {
-      return res.status(500).send();
+      return res.status(500).send('sorry your request cannot be completed at this time');
     }
   }
 

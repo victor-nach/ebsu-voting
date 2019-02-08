@@ -17,8 +17,8 @@ class helper {
    * @param {string} password
    * @returns {Boolean} return True or False
    */
-  static comparePassword(hashPassword, password) {
-    return bcrypt.compareSync(password, bcrypt.genSaltSync);
+  static comparePassword(hashPadssword, password) {
+    return bcrypt.compareSync(password, hashPadssword);
   }
 
   /**

@@ -34,7 +34,7 @@ class PartyController {
         data: rows[0],
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
   // create Party end
@@ -65,7 +65,7 @@ class PartyController {
         data: rows,
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
   // get single Party end
@@ -92,7 +92,7 @@ class PartyController {
         data: rows,
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
   // get all parties end
@@ -128,7 +128,7 @@ class PartyController {
         data: rows,
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
   // update a single Party end
@@ -160,7 +160,7 @@ class PartyController {
         message: 'the party has been succesfully deleted',
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
   // delete a single Party end
