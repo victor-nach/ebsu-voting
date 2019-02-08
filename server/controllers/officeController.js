@@ -52,7 +52,7 @@ class OfficeController {
     const { id } = req.params;
 
     // find the requested office from database
-    const text = 'SELECT * FROM users WHERE id = $1';
+    const text = 'SELECT * FROM offices WHERE id = $1';
 
     const values = [
       id,
@@ -62,7 +62,7 @@ class OfficeController {
       const { rows } = await db.query(text, values);
       return res.status(200).json({
         status: 200,
-        data: rows,
+        data: rows[0],
       });
     } catch (error) {
       return res.status(400).send(error);

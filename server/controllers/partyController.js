@@ -147,17 +147,17 @@ class PartyController {
     const { id } = req.params;
 
     // SQL to delete a row based on the specified id
-    const text = 'DELETE * FROM parties WHERE id = $1';
+    const text = 'DELETE FROM parties WHERE id = $1';
 
     const values = [
       id,
     ];
 
     try {
-      const { rows } = await db.query(text, values);
+      await db.query(text, values);
       return res.status(200).json({
         status: 200,
-        data: rows,
+        message: 'the party has been succesfully deleted',
       });
     } catch (error) {
       return res.status(400).send(error);

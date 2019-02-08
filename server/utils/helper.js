@@ -26,8 +26,8 @@ class helper {
    * @param {string} id
    * @returns {string} token
    */
-  static generateToken(id) {
-    const token = jwt.sign({ userId: id }, process.env.SECRET, { expiresIn: '7d' });
+  static genrateToken(id, isadmin) {
+    const token = jwt.sign({ userId: id, isAdmin: isadmin }, process.env.SECRET, { expiresIn: '7d' });
     return token;
   }
 }
