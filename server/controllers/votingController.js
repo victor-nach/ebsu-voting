@@ -26,7 +26,13 @@ class VotingController {
         }],
       });
     } catch (error) {
-      return res.status(400).send(error);
+      if (error === '_bt_check_unique') {
+        res.status(409).json({
+          status: 409,
+          message: 'you cannot vote for a candidate more than once',
+        });
+      }
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
 }

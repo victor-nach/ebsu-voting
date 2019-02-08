@@ -13,15 +13,15 @@ class UserController {
   static async registerUser(req, res) {
     // user is expected to send the name and type in the req.body, so we destructure it
     const {
-      firstName, lastName, email, phoneNumber, passportUrl, password,
+      firstName, lastName, email, phoneNumber, passportUrl, password, isAdmin,
     } = req.body;
 
     const hashedPassword = helper.hashPassword(password);
 
     // sql to insert a row to our already created database
     const queryText = `INSERT INTO
-      users (firstName, lastName, email, phoneNumber, passportUrl, hashedPassword)
-      values($1, $2, $3, $4, $5, $6)
+      users (firstName, lastName, email, phoneNumber, passportUrl, hashedPassword, isAdmin)
+      values($1, $2, $3, $4, $5, $6, $7)
       returning id, firstName, lastName, email, phoneNumber, passportUrl`;
 
     const values = [
@@ -31,11 +31,12 @@ class UserController {
       phoneNumber,
       passportUrl,
       hashedPassword,
+      isAdmin || false,
     ];
 
     try {
       const { rows } = await db.query(queryText, values);
-      const token = helper.generateToken(rows[0].id);
+      const token = helper.genrateToken(rows[0].id, rows[0].isadmin);
       return res.status(201).json({
         status: 201,
         data: [{
@@ -44,7 +45,13 @@ class UserController {
         }],
       });
     } catch (error) {
-      return res.status(400).send(error);
+      if (error.routine === '_bt_check_unique') {
+        return res.status(409).json({
+          status: 409,
+          error: 'user already exists',
+        });
+      }
+      return res.status(500).send('sorry your request cannot be completed at this time');
     }
   }
   //   create user end
@@ -58,26 +65,33 @@ class UserController {
     */
   static async loginUser(req, res) {
     // user is expected to send the name and type in the req.body, so we destructure it
-    const { email } = req.body;
+    const { email, password } = req.body;
 
-    // find the requested user from the remote database
-    const queryText = 'SELECT firstName, lastName, email, phoneNumber, passportUrl FROM users WHERE email = $1';
+    // find the requested user from the database
+    const queryText = 'SELECT * FROM users WHERE email = $1';
 
     const values = [email];
 
     try {
       const { rows } = await db.query(queryText, values);
-
-      const token = helper.generateToken(rows[0].id);
+      if (!rows[0]) {
+        return res.status(400).json({ message: 'The email address is incorrect' });
+      }
+      if (!helper.comparePassword(rows[0].hashedpassword, password)) {
+        return res.status(400).json({ message: 'The password is incorrect, doesn\'t match' });
+      }
+      const token = helper.genrateToken(rows[0].id, rows[0].isadmin);
+      delete rows[0].isadmin;
+      delete rows[0].hashedpassword;
       return res.status(200).json({
         status: 200,
-        data: [{
+        data: {
           token,
           user: rows[0],
-        }],
+        },
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(500).send('sorry your request cannot be completed at this time');
     }
   }
 

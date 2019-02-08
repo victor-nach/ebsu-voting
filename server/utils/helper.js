@@ -17,8 +17,8 @@ class helper {
    * @param {string} password
    * @returns {Boolean} return True or False
    */
-  static comparePassword(hashPassword, password) {
-    return bcrypt.compareSync(password, bcrypt.genSaltSync);
+  static comparePassword(hashPadssword, password) {
+    return bcrypt.compareSync(password, hashPadssword);
   }
 
   /**
@@ -26,8 +26,8 @@ class helper {
    * @param {string} id
    * @returns {string} token
    */
-  static generateToken(id) {
-    const token = jwt.sign({ userId: id }, process.env.SECRET, { expiresIn: '7d' });
+  static genrateToken(id, isadmin) {
+    const token = jwt.sign({ userId: id, isAdmin: isadmin }, process.env.SECRET, { expiresIn: '7d' });
     return token;
   }
 }

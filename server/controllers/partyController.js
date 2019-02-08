@@ -34,7 +34,7 @@ class PartyController {
         data: rows[0],
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
   // create Party end
@@ -65,7 +65,7 @@ class PartyController {
         data: rows,
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
   // get single Party end
@@ -92,7 +92,7 @@ class PartyController {
         data: rows,
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
   // get all parties end
@@ -128,7 +128,7 @@ class PartyController {
         data: rows,
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
   // update a single Party end
@@ -147,20 +147,20 @@ class PartyController {
     const { id } = req.params;
 
     // SQL to delete a row based on the specified id
-    const text = 'DELETE * FROM parties WHERE id = $1';
+    const text = 'DELETE FROM parties WHERE id = $1';
 
     const values = [
       id,
     ];
 
     try {
-      const { rows } = await db.query(text, values);
+      await db.query(text, values);
       return res.status(200).json({
         status: 200,
-        data: rows,
+        message: 'the party has been succesfully deleted',
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
   // delete a single Party end

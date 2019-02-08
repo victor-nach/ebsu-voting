@@ -33,7 +33,7 @@ class OfficeController {
         data: rows[0],
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
   // create Party end
@@ -52,7 +52,7 @@ class OfficeController {
     const { id } = req.params;
 
     // find the requested office from database
-    const text = 'SELECT * FROM users WHERE id = $1';
+    const text = 'SELECT * FROM offices WHERE id = $1';
 
     const values = [
       id,
@@ -62,10 +62,10 @@ class OfficeController {
       const { rows } = await db.query(text, values);
       return res.status(200).json({
         status: 200,
-        data: rows,
+        data: rows[0],
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
   // get single office end
@@ -92,7 +92,7 @@ class OfficeController {
         data: rows,
       });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send('sorry your request cannot be completed at this time');
     }
   }
   // get all offices end
@@ -124,7 +124,10 @@ class OfficeController {
         data: rows,
       });
     } catch (error) {
-      return res.status(500).json(error);
+      return res.status(500).json({
+        status: 500,
+        message: 'sorry your request cannot be completed at this time',
+      });
     }
   }
   // register candidate for office end
@@ -140,12 +143,21 @@ class OfficeController {
 
     try {
       const { rows } = await db.query(text, values);
-      return res.status(201).json({
+      if (!rows[0]) {
+        return res.status(404).json({
+          status: 404,
+          message: 'elections not yet concluded for selected office',
+        });
+      }
+      return res.status(200).json({
         status: 201,
         data: rows,
       });
     } catch (error) {
-      return res.status(500).json(error);
+      return res.status(500).json({
+        status: 500,
+        message: 'server error',
+      });
     }
   }
   // get results for office
