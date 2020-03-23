@@ -1,7 +1,7 @@
 // pop up notification
 
 let logInModal = document.querySelector('.modal-box.login');
-let logInLink = document.querySelector('.log-in-link');
+let logInLink = document.querySelectorAll('.log-in-link');
 let closeBtn = document.querySelector('.close-button');
 
 
@@ -17,6 +17,7 @@ let closeModal = () => {
 };
 
 // attach event listener to the log in links and add show class on click
-logInLink.addEventListener('click', showlogInModal);
+// logInLink.addEventListener('click', showlogInModal);
+logInLink.forEach(item => item.addEventListener('click', showlogInModal))
 
 closeBtn.addEventListener("click", closeModal);
