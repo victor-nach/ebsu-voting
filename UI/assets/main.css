@@ -1079,7 +1079,7 @@ footer.back {
 
 /*
 ================================================
-6. Dashboard Parties page
+7. Dashboard Offices page
 ================================================
 */
 .offices-container > div {
@@ -1148,4 +1148,14 @@ footer.back {
 .offices-container > div:hover {
     box-shadow: 1px 5px 3px 3px rgba(0,0,0,.3);
     margin-top: -5px;
+}
+
+/*
+================================================
+8. Dashboard Results page
+================================================
+*/
+.mdb-content .results p {
+    font-size: 18px;
+    line-height: 1.5;
 }
